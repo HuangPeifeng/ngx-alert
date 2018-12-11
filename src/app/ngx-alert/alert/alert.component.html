@@ -1,11 +1,11 @@
 <div class="alert-layout">
   <div class="alert">
     <span class="img"></span>
-    <h3>Title</h3>
-    <span>Message</span>
+    <h3>{{ config.title }}</h3>
+    <span>{{ config.message }}</span>
     <span class="buttons">
-      <button class="button submit">確定</button>
-      <button class="button" (click)="close()">取消</button>
+      <button class="button submit" *ngIf="config.submitBtn" (click)="submit()">確定</button>
+      <button class="button" *ngIf="config.closeBtn" (click)="close()">取消</button>
     </span>
   </div>
 </div>
