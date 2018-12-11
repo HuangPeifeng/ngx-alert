@@ -11,9 +11,77 @@
 
   .alert {
     width: 400px;
-    height: 300px;
-    background-color: #ffffff;
+    padding: 10px;
+    background-color: #fffdeb;
     border-radius: 10px;
     box-shadow: 0 0 10px #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: alertScale .3s;
+    transition-timing-function: linear;
+
+    .img {
+      background-image: url('/assets/success.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      width: 150px;
+      height: 150px;
+      margin: 10px;
+      animation: circle 1s;
+      transition-timing-function: linear;
+      animation-delay: .3s;
+    }
+
+    .buttons {
+      margin: 20px;
+
+      .button {
+        border: 0;
+        outline: none;
+        padding: 0 1em;
+        margin: 0 1em;
+        border-radius: 5px;
+        font-size: 18px;
+        line-height: 2;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #ccc;
+        }
+
+        &.submit {
+          background-color: #288e72;
+          color: #ffffff;
+
+          &:hover {
+            background-color: #1f735c;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes alertScale {
+  0% {
+    transform: scale(0, 0);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes circle {
+  0% {
+    transform: rotate3d(0, 0, 0, 0deg);
+  }
+
+  100% {
+    transform: rotate3d(0, 1, 0, 360deg);
   }
 }
