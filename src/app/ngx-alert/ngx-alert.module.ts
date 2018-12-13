@@ -16,6 +16,7 @@ import { NgxAlertDirective } from './ngx-alert.directive';
   exports: [
     NgxAlertComponent
   ],
+  providers: [],
   entryComponents: [
     AlertComponent
   ]

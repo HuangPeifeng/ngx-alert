@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild, ComponentFactoryResolver, OnDestroy, ComponentRef } from '@angular/core';
-import { NgxAlertDirective } from './ngx-alert.directive';
+import { Component, OnInit, ComponentFactoryResolver, ViewContainerRef, ComponentRef, OnDestroy } from '@angular/core';
+import { NgxAlertOutput } from '.';
+import { ngxAlertOpen, ngxAlertClose } from 'src/main';
 import { AlertComponent } from './alert/alert.component';
-import { NgxAlertService } from './ngx-alert.service';
-import { NgxAlertOutput } from './ngx-alert';
 
 @Component({
   selector: 'ngx-alert',
@@ -11,30 +10,39 @@ import { NgxAlertOutput } from './ngx-alert';
 })
 export class NgxAlertComponent implements OnInit, OnDestroy {
   componentRef: ComponentRef<any>;
-  @ViewChild(NgxAlertDirective) ngxAlert: NgxAlertDirective;
 
   constructor(
     private _resolver: ComponentFactoryResolver,
-    private _service: NgxAlertService
+    private _viewContainerRef: ViewContainerRef
   ) { }
 
   ngOnInit() {
-    this._service.dataChange.subscribe(config => {
-      this.displayComponent(config);
+    ngxAlertOpen.subscribe(data => {
+      this.createAlert({
+        ngxTitle: data.ngxTitle,
+        ngxMessage: data.ngxMessage,
+        ngxType: data.ngxType,
+        ngxOption: data.ngxOption
+      });
     });
   }
 
-  displayComponent(config) {
-    const viewContainerRef = this.ngxAlert.viewContainerRef;
+  createAlert(data: NgxAlertOutput) {
     const factory = this._resolver.resolveComponentFactory(AlertComponent);
-    this.componentRef = viewContainerRef.createComponent(factory);
+    this.componentRef = this._viewContainerRef.createComponent(factory);
 
-    (this.componentRef.instance as NgxAlertOutput).closeEvent.subscribe(x => {
-      this.closeAlert();
+    (this.componentRef.instance as NgxAlertOutput).ngxTitle = data.ngxTitle;
+    (this.componentRef.instance as NgxAlertOutput).ngxMessage = data.ngxMessage;
+    (this.componentRef.instance as NgxAlertOutput).ngxType = data.ngxType;
+    (this.componentRef.instance as NgxAlertOutput).ngxOption = data.ngxOption;
+
+    (this.componentRef.instance as NgxAlertOutput).closeEvent.subscribe(res => {
+      this.closeAlert(res);
     });
   }
 
-  closeAlert() {
+  closeAlert(data) {
+    ngxAlertClose.next(data);
     this.componentRef.destroy();
   }
 

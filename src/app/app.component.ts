@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgxAlertService } from './ngx-alert/ngx-alert.service';
+import { ngxAlert } from './ngx-alert';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +9,12 @@ import { NgxAlertService } from './ngx-alert/ngx-alert.service';
 export class AppComponent {
   title = 'ngx-alert';
 
-  constructor(private _ngxAlertService: NgxAlertService) { }
+  constructor() { }
 
   alert() {
-    this._ngxAlertService.alert();
+    ngxAlert('', '', 'success').subscribe(res => {
+      console.log(res);
+    });
   }
+
 }

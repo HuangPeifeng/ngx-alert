@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { NgxAlertOutput } from '../ngx-alert';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { NgxAlertOutput, NgxAlertOption, ngxAlertType } from '..';
 
 @Component({
   selector: 'app-alert',
@@ -7,15 +7,19 @@ import { NgxAlertOutput } from '../ngx-alert';
   styleUrls: ['./alert.component.scss']
 })
 export class AlertComponent implements OnInit, NgxAlertOutput {
+  @Input() ngxTitle: string;
+  @Input() ngxMessage: string;
+  @Input() ngxType: ngxAlertType;
+  @Input() ngxOption: NgxAlertOption;
   @Output() closeEvent = new EventEmitter;
 
-  config = {
-    type: 'success',
+  option = {
     submitBtn: true,
     closeBtn: false,
-    title: null,
-    message: null
-  };
+    backgroundColor: '#fffdeb',
+    submitBtnColor: '#005dbd',
+    closeBtnColor: '#ffffff'
+  } as NgxAlertOption;
 
   constructor() { }
 

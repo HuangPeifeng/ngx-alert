@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NgxAlertModule } from './ngx-alert/ngx-alert.module';
+import { NgxAlertDirective } from './ngx-alert';
 
 @NgModule({
   declarations: [

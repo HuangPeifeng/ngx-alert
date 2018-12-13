@@ -3,6 +3,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
+import { Subject } from 'rxjs';
 
 if (environment.production) {
   enableProdMode();
@@ -10,3 +11,6 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
+
+export const ngxAlertOpen = new Subject<any>();
+export const ngxAlertClose = new Subject<any>();
