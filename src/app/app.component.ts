@@ -12,7 +12,7 @@ export class AppComponent {
   constructor() { }
 
   alert() {
-    ngxAlert('', '', 'success').subscribe(res => {
+    ngxAlert('title', 'message', 'confirm').subscribe(res => {
       console.log(res);
     });
   }

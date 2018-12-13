@@ -1,5 +1,5 @@
 import { ngxAlertOpen, ngxAlertClose } from 'src/main';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 export interface NgxAlertOutput {
   ngxTitle: string;
@@ -10,8 +10,6 @@ export interface NgxAlertOutput {
 }
 
 export interface NgxAlertOption {
-  submitBtn?: boolean;
-  closeBtn?: boolean;
   backgroundColor?: string;
   submitBtnColor?: string;
   closeBtnColor?: string;
@@ -25,6 +23,8 @@ export function ngxAlert(
   ngxType: ngxAlertType,
   ngxOption?: NgxAlertOption
 ) {
+  let $sub: Subscription;
+
   ngxAlertOpen.next({
     ngxTitle: ngxTitle,
     ngxMessage: ngxMessage,
@@ -33,7 +33,8 @@ export function ngxAlert(
   });
 
   const result = new Subject<any>();
-  ngxAlertClose.subscribe(res => {
+  $sub = ngxAlertClose.subscribe(res => {
+    $sub.unsubscribe();
     result.next(res);
   });
   return result;

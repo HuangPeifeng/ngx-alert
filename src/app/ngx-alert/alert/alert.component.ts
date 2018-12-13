@@ -14,8 +14,6 @@ export class AlertComponent implements OnInit, NgxAlertOutput {
   @Output() closeEvent = new EventEmitter;
 
   option = {
-    submitBtn: true,
-    closeBtn: false,
     backgroundColor: '#fffdeb',
     submitBtnColor: '#005dbd',
     closeBtnColor: '#ffffff'
