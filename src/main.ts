@@ -11,6 +11,3 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
-
-export const ngxAlertOpen = new Subject<any>();
-export const ngxAlertClose = new Subject<any>();

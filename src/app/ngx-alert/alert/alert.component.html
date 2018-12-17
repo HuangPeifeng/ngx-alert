@@ -1,6 +1,6 @@
 <div class="alert-layout">
   <div class="alert">
-    <span class="img" [ngStyle]="{ 'background-image': 'url(assets/' + ngxType + '.png)' }"></span>
+    <span class="img" [ngStyle]="{ 'background-image': getUrl() }"></span>
     <h3>{{ ngxTitle }}</h3>
     <span>{{ ngxMessage }}</span>
     <span class="buttons">

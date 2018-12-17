@@ -1,5 +1,5 @@
-import { ngxAlertOpen, ngxAlertClose } from 'src/main';
 import { Subject, Subscription } from 'rxjs';
+import { NgxAlertModule } from '.';
 
 export interface NgxAlertOutput {
   ngxTitle: string;
@@ -22,10 +22,9 @@ export function ngxAlert(
   ngxMessage: string,
   ngxType: ngxAlertType,
   ngxOption?: NgxAlertOption
-) {
+): Subject<any> {
   let $sub: Subscription;
-
-  ngxAlertOpen.next({
+  NgxAlertModule.ngxAlertOpen.next({
     ngxTitle: ngxTitle,
     ngxMessage: ngxMessage,
     ngxType: ngxType,
@@ -33,7 +32,7 @@ export function ngxAlert(
   });
 
   const result = new Subject<any>();
-  $sub = ngxAlertClose.subscribe(res => {
+  $sub = NgxAlertModule.ngxAlertClose.subscribe(res => {
     $sub.unsubscribe();
     result.next(res);
   });

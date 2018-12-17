@@ -1,6 +1,5 @@
 import { Component, OnInit, ComponentFactoryResolver, ViewContainerRef, ComponentRef, OnDestroy } from '@angular/core';
-import { NgxAlertOutput } from '.';
-import { ngxAlertOpen, ngxAlertClose } from 'src/main';
+import { NgxAlertOutput, NgxAlertModule } from '.';
 import { AlertComponent } from './alert/alert.component';
 
 @Component({
@@ -17,7 +16,7 @@ export class NgxAlertComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    ngxAlertOpen.subscribe(data => {
+    NgxAlertModule.ngxAlertOpen.subscribe(data => {
       this.createAlert({
         ngxTitle: data.ngxTitle,
         ngxMessage: data.ngxMessage,
@@ -42,7 +41,7 @@ export class NgxAlertComponent implements OnInit, OnDestroy {
   }
 
   closeAlert(data) {
-    ngxAlertClose.next(data);
+    NgxAlertModule.ngxAlertClose.next(data);
     this.componentRef.destroy();
   }
 

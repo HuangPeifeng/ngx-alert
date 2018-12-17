@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgxAlertComponent } from './ngx-alert.component';
 import { AlertComponent } from './alert/alert.component';
 import { NgxAlertDirective } from './ngx-alert.directive';
+import { Subject } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -21,4 +22,7 @@ import { NgxAlertDirective } from './ngx-alert.directive';
     AlertComponent
   ]
 })
-export class NgxAlertModule { }
+export class NgxAlertModule {
+  public static ngxAlertOpen = new Subject<any>();
+  public static ngxAlertClose = new Subject<any>();
+}
