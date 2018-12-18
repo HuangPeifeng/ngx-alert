@@ -22,6 +22,10 @@ export class AlertComponent implements OnInit, NgxAlertOutput {
   constructor() { }
 
   ngOnInit() {
+    if (!this.ngxOption) {
+      this.ngxOption = this.option;
+      return;
+    }
     Object.keys(this.option).map(property => {
       if (!this.ngxOption[property]) {
         this.ngxOption[property] = this.option[property];
