@@ -34,6 +34,14 @@
       animation-delay: .3s;
     }
 
+    .title {
+      word-break: break-all;
+    }
+
+    .message {
+      word-break: break-all;
+    }
+
     .buttons {
       margin: 20px;
 
@@ -56,10 +64,6 @@
         &.submit {
           background-color: #005dbd;
           color: #ffffff;
-
-          &:hover {
-            background-color: #005dbdcc;
-          }
         }
       }
     }
