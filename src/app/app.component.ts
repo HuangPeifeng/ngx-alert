@@ -12,8 +12,8 @@ export class AppComponent {
   constructor() { }
 
   alert() {
-    ngxAlert('title', 'message', 'confirm').subscribe(res => {
-      console.log(res);
+    ngxAlert('title', 'message', 'confirm').then(x => {
+      console.log(x);
     });
   }
 

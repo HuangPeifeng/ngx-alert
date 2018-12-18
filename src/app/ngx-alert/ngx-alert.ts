@@ -22,7 +22,7 @@ export function ngxAlert(
   ngxMessage: string,
   ngxType: ngxAlertType,
   ngxOption?: NgxAlertOption
-): Subject<any> {
+): Promise<any> {
   let $sub: Subscription;
   NgxAlertModule.ngxAlertOpen.next({
     ngxTitle: ngxTitle,
@@ -31,10 +31,17 @@ export function ngxAlert(
     ngxOption: ngxOption
   });
 
-  const result = new Subject<any>();
-  $sub = NgxAlertModule.ngxAlertClose.subscribe(res => {
-    $sub.unsubscribe();
-    result.next(res);
+  return new Promise<any> ((resolve, reject) => {
+    $sub = NgxAlertModule.ngxAlertClose.subscribe(res => {
+      $sub.unsubscribe();
+      resolve(res);
+    });
   });
-  return result;
+
+  // const result = new Subject<any>();
+  // $sub = NgxAlertModule.ngxAlertClose.subscribe(res => {
+  //   $sub.unsubscribe();
+  //   result.next(res);
+  // });
+  // return result;
 }
