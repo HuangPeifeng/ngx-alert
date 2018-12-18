@@ -1,27 +1,78 @@
 # NgxAlert
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.0.
+NgxAlert
 
-## Development server
+## 安裝
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```bash
+npm install pf-ngx-alert
+```
 
-## Code scaffolding
+## 引用
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+`app.module.ts`
+```typescript
+...something...
+import { NgxAlertModule } from 'pf-ngx-alert';
 
-## Build
+@NgModule({
+  ...something...
+  imports: [...something..., NgxAlertModule],
+  ...something...
+})
+export class AppModule {}
+```
+`app.component.html`
+```html
+<ngx-alert></ngx-alert>
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## 快速上手
 
-## Running unit tests
+```bash
+ng g c Test
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+`test.component.html`
+```html
+<button (click)="alert()">ALERT</button>
+```
 
-## Running end-to-end tests
+`test.component.ts`
+```typescript
+import { ngxAlert } from 'pf-ngx-alert';
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+export class TestComponent implements OnInit {
 
-## Further help
+  constructor() { }
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+  ngOnInit() { }
+
+  alert() {
+    ngxAlert(
+      'Title', /* Title */
+      'Message', /* Message */
+      'success' /* Type */
+    ).then(result => {
+      /* Do something... */
+    });
+  }
+}
+```
+## Required
+-------------
+
+| Argument          | Required                                 | Default value    | Type      | Description                     |
+| ----------------- | ---------------------------------------- | ---------------- | --------- | ------------------------------- |
+| `ngxTitle`        | yes                                      | none             | string    | 標題 |
+| `ngxMessage`      | yes                                      | none             | string    | 內容 |
+| `ngxType`         | yes (`success`、`error`、`confirm`)      | none            | string    | 類型 |
+
+## Option
+-------------
+
+| Argument                 | Required | Default value      | Type      | Description                     |
+| ------------------------ | -------- | ------------------ | --------- | ------------------------------- |
+| `backgroundColor`        | no       | `#fffdeb`          | string    | 背景色                           |
+| `submitBtnColor`         | no       | `#005dbd`          | string    | 確認按鈕顏色                      |
+| `closeBtnColor`          | no       | `#ffffff`          | string    | 取消按鈕顏色                      |
