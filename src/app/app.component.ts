@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ngxAlert } from './ngx-alert';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ngx-alert';
+
+  constructor() { }
+
+  alert() {
+    ngxAlert('title', 'message', 'confirm').then(x => {
+      console.log(x);
+    });
+  }
+
 }

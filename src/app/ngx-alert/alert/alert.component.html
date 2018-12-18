@@ -1,0 +1,11 @@
+<div class="alert-layout">
+  <div class="alert" [ngStyle]="{ 'background-color': ngxOption.backgroundColor }">
+    <span class="img" [ngStyle]="{ 'background-image': getUrl() }"></span>
+    <h3 class="title">{{ ngxTitle }}</h3>
+    <span class="message">{{ ngxMessage }}</span>
+    <span class="buttons">
+      <button class="button submit" [ngStyle]="{ 'background-color': ngxOption.submitBtnColor }" (click)="submit()">確定</button>
+      <button class="button" *ngIf="ngxType === 'confirm'" [ngStyle]="{ 'background-color': ngxOption.closeBtnColor }" (click)="close()">取消</button>
+    </span>
+  </div>
+</div>
